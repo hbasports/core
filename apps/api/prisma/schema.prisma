@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator zod {
+  provider  = "zod-prisma-types"
+}
+
+type FirstName {
+  legal  String
+  preferred  String?
+}
+
+type FullName {
+  firstName  FirstName
+  middleName  String?
+  lastName  String
+}
+
+type Country {
+  code  String
+  name  String
+  display  String?
+}
+
+type Location {
+  city  String?
+  state  String?
+  country  Country
+}
+
+type BirthDetails {
+  date  String
+  location  Location
+}
+
+type BiometricData {
+  heightCm  Int
+  weightKg  Int
+}
+
+enum Handedness {
+  RIGHT
+  LEFT
+  AMBIDEXTROUS
+}
+
+enum BowlingSpeed {
+  FAST
+  FAST_MEDIUM
+  MEDIUM_FAST
+  MEDIUM
+  MEDIUM_SLOW
+  SLOW_MEDIUM
+  SLOW
+}
+
+enum BowlingStyle {
+  ORTHODOX
+  UNORTHODOX
+  LEGBREAK_GOOGLY
+  LEGBREAK
+  OFFBREAK
+}
+
+type BowlingInfo {
+  handedness  Handedness
+  speed  BowlingSpeed
+  style  BowlingStyle?
+}
+
+enum PlayingRole {
+  BOWLER
+  BOWLING_ALLROUNDER
+  ALLROUNDER
+  BATTING_ALLROUNDER
+  BATTER
+  WICKETKEEPER_BATTER
+}
+
+model Cricketer {
+  id  String   @id @default(auto()) @map("_id") @db.ObjectId
+  fullName  FullName
+  biometric BiometricData?
+  born  BirthDetails
+  nationality Country
+  bowlingStyle  BowlingInfo?
+  battingStyle  Handedness
+  playingRole  PlayingRole
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

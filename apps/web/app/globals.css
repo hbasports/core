@@ -4,11 +4,14 @@
   --hba-primary: rgba(3, 169, 244, 1);
   --hba-secondary: rgba(3, 152, 220, 1);
 
-  --color-primary: #f6f7f9;
-  --color-bg-primary: #eeeff2;
-  --color-emphasis: #e5e7eb;
-  --color-secondary: #d1d5db;
-  --color-secondary-muted: #eeeff2;
+  --color-bg-primary: hsl(0, 0%, 100%);
+  --color-bg-secondary: hsl(0, 0%, 95%);
+  --color-bg-tertiary: hsl(0, 0%, 90%);
+  --color-border: hsl(0, 0%, 85%);
+
+  --color-text-emphasis: #070a0d;
+  --color-text: hsl(0, 0, 35%);
+  --color-text-secondary: hsl(0, 0, 40%);
 
   --color-success: #e4fbed;
   --color-attention: #ffedd6;

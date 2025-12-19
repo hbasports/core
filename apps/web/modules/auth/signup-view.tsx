@@ -19,13 +19,14 @@ export default function Signup() {
     )
 
     return (
-        <div className="bg-[var(--color-bg-primary)]">
+        <div className="bg-[var(--color-bg-secondary)]">
             <AuthContainer
                 heading="Register">
                 <FormProvider>
-                    <form className="bg-white">
+                    <form className="bg-white space-y-2">
 
-                        <InputField name="name" placeholder="Username" />
+                        <InputField label="Username" name="name" placeholder="Username" />
+                        <InputField label="Password" type="password" name="name" placeholder="Password" />
 
                     </form>
                 </FormProvider>
