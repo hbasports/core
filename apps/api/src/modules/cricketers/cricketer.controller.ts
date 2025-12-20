@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import logger from "../../config/logger.js";
+import logger from "@/config/logger.js";
 
 import { prisma } from "@lib/prisma.js";
 import { getAge } from "@lib/date.js";
