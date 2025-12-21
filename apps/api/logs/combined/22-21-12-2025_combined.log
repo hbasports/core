@@ -1,0 +1,45 @@
+{
+  message: 'app started on port 8626 in development environment',
+  level: '\x1B[32minfo\x1B[39m',
+  timestamp: '2025-12-21T11:34:27.938Z'
+}
+{
+  requestId: '019b40b0-9440-768b-a8ae-d87a2889d7b3',
+  method: 'POST',
+  url: '/api/cricket/teams',
+  timestamp: '2025-12-21T11:34:32.768Z',
+  level: '\x1B[32minfo\x1B[39m',
+  message: 'Incoming Request'
+}
+{
+  requestId: '019b40b0-c1d2-73cf-bf6a-0e30fb2bdb5e',
+  method: 'POST',
+  url: '/api/cricket/teams',
+  timestamp: '2025-12-21T11:34:44.434Z',
+  level: '\x1B[32minfo\x1B[39m',
+  message: 'Incoming Request'
+}
+{
+  requestId: '019b40b0-c5e7-71aa-85ed-7421bbdd298d',
+  method: 'POST',
+  url: '/api/cricket/teams',
+  timestamp: '2025-12-21T11:34:45.479Z',
+  level: '\x1B[32minfo\x1B[39m',
+  message: 'Incoming Request'
+}
+{
+  requestId: '019b40b0-c70f-718d-8dd8-625364963dd3',
+  method: 'POST',
+  url: '/api/cricket/teams',
+  timestamp: '2025-12-21T11:34:45.775Z',
+  level: '\x1B[32minfo\x1B[39m',
+  message: 'Incoming Request'
+}
+{
+  requestId: '019b40b0-cd1b-770b-b70c-28b21f27af7e',
+  method: 'POST',
+  url: '/api/cricket/teams',
+  timestamp: '2025-12-21T11:34:47.323Z',
+  level: '\x1B[32minfo\x1B[39m',
+  message: 'Incoming Request'
+}

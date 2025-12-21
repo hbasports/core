@@ -1,15 +1,19 @@
-import winston from 'winston'
-const { combine, timestamp, printf, colorize, align } = winston.format;
+import winston, { format, config } from 'winston'
+
+const formattedTimestamp = format.timestamp({
+    format: "DD-MM-YYYY HH:mm:ss.SSS"
+})
+
+const colorizer = format.colorize({
+  colors: config.npm.colors,
+});
 
 const logger = winston.createLogger({
     level: 'info',
-    format: combine(
-        colorize({all: true}),
-        timestamp({
-            format: 'DD-MM-YYYY hh:mm:ss.SSS A'
-        }),
-        align(),
-        printf((info) => `[${info.timestamp}] ${info.level}: ${info.message}`)
+    format: format.combine(
+        colorizer,
+        formattedTimestamp,
+        format.simple()
     ),
     transports: [new winston.transports.Console()]
 })

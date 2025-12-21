@@ -11,14 +11,13 @@ export function sendResponse(
     data: ResponseData | null = {},
     message?: string
 ): Response {
-
     const response = {
         statusCode,
+        timestamp: new Date().toISOString(),
         success,
         data: data === null ? {} : data,
         message,
     }
 
     return res.status(statusCode).json(response)
-
 }

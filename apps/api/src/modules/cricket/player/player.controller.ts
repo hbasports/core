@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, response, Response } from "express";
 import logger from "@/config/logger.js";
 
 import { prisma } from "@lib/prisma.js";
@@ -12,18 +12,18 @@ export async function addPlayer(req: Request, res: Response, next: NextFunction)
     const cricketer = await prisma.cricketer.create({
       data: req.body,
     });
-    
-    const shortName = getShortName(cricketer.fullName)
 
+    const shortName = getShortName(cricketer.fullName)
     const age = getAge(cricketer.born.date);
 
-    logger.info(`created cricketer: ${shortName}, aged ${age}, nationality ${cricketer.nationality.display}`);
-
-    sendResponse(res, StatusCodes.CREATED, true, {
+    const responseData = {
       "name": shortName,
       "age": age,
       "nationality": cricketer.nationality.display
-    }, "Player created successfully.")
+    }
+
+    logger.info("created cricketer", responseData);
+    sendResponse(res, StatusCodes.CREATED, true, responseData, "Player created successfully.")
   } catch (err) {
     next(err);
   }

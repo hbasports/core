@@ -6,8 +6,11 @@ import logger from "@/config/logger.js";
 
 import routes from "@/modules/routes.js";
 import errorHandler from "@/middleware/error.js";
+import logRequest from "./middleware/request-ids/request-id.middleware.js";
 
+app.use(logRequest())
 app.use(express.json());
+
 app.use("/api", routes);
 
 app.use(errorHandler)

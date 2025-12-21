@@ -12,7 +12,6 @@ export function validateData(schema: z.ZodTypeAny) {
         } catch (err) {
 
             if (err instanceof ZodError) {
-                logger.warn(`${req.method} ${req.path} failed with ${StatusCodes.BAD_REQUEST} error code`)
                 res.status(StatusCodes.BAD_REQUEST).json({ 
                     error: 'Invalid data',
                     issues: err.issues.map(e => ({

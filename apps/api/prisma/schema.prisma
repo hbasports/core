@@ -5,44 +5,60 @@ generator client {
 
 datasource db {
   provider = "mongodb"
-  url  = env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
 generator zod {
-  provider  = "prisma-zod-generator"
+  provider = "prisma-zod-generator"
+}
+
+type Image {
+  href        String
+  width       Int?
+  height      Int?
+  rel         String[]
+  alt         String?
+  lastUpdated DateTime
 }
 
 type FirstName {
-  legal  String
-  preferred  String?
+  legal     String
+  preferred String?
 }
 
 type FullName {
   firstName  FirstName
-  middleName  String?
-  lastName  String
+  middleName String?
+  lastName   String
 }
 
 type Country {
-  code  String
-  name  String
-  display  String?
+  code    String
+  name    String
+  display String?
 }
 
 type Location {
-  city  String?
-  state  String?
-  country  Country
+  city    String?
+  state   String?
+  country Country
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  PREFER_NOT_TO_SAY
 }
 
 type BirthDetails {
-  date  String
-  location  Location
+  date     String
+  location Location
+  gender   Gender
 }
 
 type BiometricData {
-  heightCm  Int
-  weightKg  Int
+  heightCm Int
+  weightKg Int
 }
 
 enum Handedness {
@@ -70,9 +86,9 @@ enum BowlingStyle {
 }
 
 type BowlingInfo {
-  handedness  Handedness
-  speed  BowlingSpeed
-  style  BowlingStyle?
+  handedness Handedness
+  speed      BowlingSpeed
+  style      BowlingStyle?
 }
 
 enum PlayingRole {
@@ -85,14 +101,53 @@ enum PlayingRole {
 }
 
 model Cricketer {
-  id  String   @id @default(auto()) @map("_id") @db.ObjectId
-  fullName  FullName
-  biometric BiometricData?
-  born  BirthDetails
-  nationality Country
-  bowlingStyle  BowlingInfo?
-  battingStyle  Handedness
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  fullName     FullName
+  biometric    BiometricData?
+  born         BirthDetails
+  nationality  Country
+  bowlingStyle BowlingInfo?
+  battingStyle Handedness
   playingRole  PlayingRole
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+}
+
+type Colors {
+  color          String
+  alternateColor String
+}
+
+model CricketTeam {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  teamId           String
+  name             String
+  nickname         String
+  abbreviation     String
+  displayName      String
+  shortDisplayName String
+  slug             String
+  gender           Gender
+  colors           Colors?
+  images           Image[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model CricketVenue {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  name              String
+  suburb            String?
+  city              String
+  country           String?
+  established       Int?
+  capacity          Int?
+  playingAreaWidth  Int?
+  playingAreaHeight Int?
+  endNames          String[]
+  floodlights       Boolean? @default(false)
+  curatorName       String? // Adjust to a record when integrated
+  hoursFromUTC      String? // Example: '+3:30, -12', integrate daylight savings
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 }
