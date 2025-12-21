@@ -1,8 +1,8 @@
 import express from "express";
 const router = express.Router();
 
-import cricketerRoutes from "./cricketers/cricketer.route.js";
+import cricketRoutes from "@/modules/cricket/route.js";
 
-router.use("/cricketers", cricketerRoutes);
+router.use("/cricket", cricketRoutes);
 
 export default router;
