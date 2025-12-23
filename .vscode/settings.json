@@ -1,4 +1,17 @@
 {
-  "spellright.language": ["en"],
-  "spellright.documentTypes": ["markdown", "latex"]
+  "spellright.language": [
+    "en"
+  ],
+  "spellright.documentTypes": [
+    "markdown",
+    "latex"
+  ],
+  "prisma.pinToPrisma6": true,
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+  "prettier.prettierPath": ".yarn/sdks/prettier/index.cjs",
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

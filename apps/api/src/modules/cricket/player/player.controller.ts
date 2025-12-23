@@ -1,7 +1,7 @@
 import { NextFunction, Request, response, Response } from "express";
 import logger from "@/config/logger.js";
 
-import { prisma } from "@lib/prisma.js";
+import { prisma } from "@hbasports/prisma/client";
 import { getAge } from "@lib/date.js";
 import { sendResponse } from "@/lib/responseHandler.js";
 import { StatusCodes } from "http-status-codes";

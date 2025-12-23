@@ -3,7 +3,7 @@ import logger from "@/config/logger.js";
 import { sendResponse } from "@/lib/responseHandler.js";
 import { StatusCodes } from "http-status-codes";
 
-import { prisma } from '@/lib/prisma.js'
+import { prisma } from '@hbasports/prisma/client'
 
 import { v7 as uuidv7 } from "uuid";
 

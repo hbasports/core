@@ -1,3 +1,5 @@
+import "./env.js"
+
 import express from "express";
 const app = express();
 
@@ -8,13 +10,15 @@ import routes from "@/modules/routes.js";
 import errorHandler from "@/middleware/error.js";
 import logRequest from "./middleware/request-ids/request-id.middleware.js";
 
-app.use(logRequest())
+app.use(logRequest());
 app.use(express.json());
 
 app.use("/api", routes);
 
-app.use(errorHandler)
+app.use(errorHandler);
 
 app.listen(config.api.port, () => {
-  logger.info(`app started on port ${config.api.port} in ${config.env.type} environment`);
+  logger.info(
+    `app started on port ${config.api.port} in ${config.env.type} environment`
+  );
 });

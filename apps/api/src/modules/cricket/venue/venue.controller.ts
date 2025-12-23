@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma.js'
+import { prisma } from '@hbasports/prisma/client'
 import { sendResponse } from '@/lib/responseHandler.js'
 import { Request, Response, NextFunction } from 'express'
 import { StatusCodes } from 'http-status-codes'

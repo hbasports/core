@@ -1,0 +1,10 @@
+{
+    "name": "@hbasports/features",
+    "description": "HBA SPORTS' collection of features",
+    "authors": "HBA SPORTS",
+    "private": true,
+    "main": "index.ts",
+    "dependencies": {
+        "@hbasports/prisma": "workspace:*"
+    }
+}

@@ -1,0 +1,20 @@
+import React from 'react'
+
+import { CommonProperties } from '@/lib/types/CommonProperties'
+
+const Shell = ({
+  children
+}: CommonProperties) => {
+  return (
+    <html>
+      <head>
+        <meta charSet='utf-8' name='viewport' content='width=device-width, initial-scale=1.0' />
+      </head>
+      <body>
+        {children}
+      </body>
+    </html>
+  )
+}
+
+export default Shell

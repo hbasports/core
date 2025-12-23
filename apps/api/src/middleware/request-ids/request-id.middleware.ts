@@ -11,14 +11,10 @@ export default function logRequest() {
         const requestId = uuidv7()
         res.setHeader("Request-Id", requestId)
 
-        const {method, headers, body: requestBody, baseUrl} = req;
+        const responseTime = `${(time / 1000).toFixed(2)}s`
 
-        logger.info("Incoming Request", {
-            requestId,
-            method,
-            responseTime: `${(time / 1000).toFixed(2)}s`,
-            url: baseUrl,
-            timestamp: new Date().toISOString()
-        })
+        const {method, baseUrl} = req;
+
+        logger.info(`${method} ${baseUrl} -> ${res.statusCode} ${StatusCodes[res.statusCode]} in ${responseTime} (${requestId})`)
     })
 }

@@ -3,7 +3,7 @@ const router = express.Router()
 
 import { createTeam } from "./team.controller.js"
 import { validateData } from "@/middleware/body/json.validation.middleware.js"
-import { CricketTeamCreateInputObjectZodSchema } from "@/prisma/generated/schemas/objects/CricketTeamCreateInput.schema.js"
+import { CricketTeamCreateInputObjectZodSchema } from "@hbasports/prisma/objects/CricketTeamCreateInput.schema.js"
 
 router.post('/new', validateData(CricketTeamCreateInputObjectZodSchema.omit({teamId: true})), createTeam)
 
