@@ -27,15 +27,16 @@ type FirstName {
 }
 
 type FullName {
-  firstName  FirstName
-  middleName String?
-  lastName   String
+  firstName   FirstName
+  middleNames String[]
+  lastName    String
 }
 
 type Country {
-  code    String
-  name    String
-  display String?
+  countryCode String
+  country     String
+  nationality String?
+  display     String?
 }
 
 type Location {
@@ -48,12 +49,6 @@ enum Gender {
   MALE
   FEMALE
   PREFER_NOT_TO_SAY
-}
-
-type BirthDetails {
-  date     String
-  location Location
-  gender   Gender
 }
 
 type BiometricData {
@@ -116,6 +111,21 @@ model Cricketer {
 type Colors {
   color          String
   alternateColor String
+}
+
+type BirthDetails {
+  date     DateTime
+  location Location
+  gender   Gender
+}
+
+model Player {
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  fullName      FullName
+  birthDetails  BirthDetails
+  biometricData BiometricData
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 }
 
 model CricketTeam {

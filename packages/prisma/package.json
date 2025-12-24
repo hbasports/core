@@ -1,16 +1,16 @@
 {
-    "name": "@hbasports/prisma",
-    "exports": {
-        "./client": "./client.ts",
-        "./*": "./generated/schemas/*"
-    },
-    "devDependencies": {
-        "@hbasports/tsconfig": "workspace:*"
-    },
-    "dependencies": {
-        "@prisma/client": "6.19.1",
-        "dotenv": "^17.2.3",
-        "prisma": "6.19.1",
-        "prisma-zod-generator": "^2.1.2"
-    }
+  "name": "@hbasports/prisma",
+  "exports": {
+    "./client": "./client.ts",
+    "./*": "./generated/prisma/*"
+  },
+  "devDependencies": {
+    "@hbasports/tsconfig": "workspace:*",
+    "prisma": "6.19.1",
+    "prisma-zod-generator": "^1.32.1"
+  },
+  "dependencies": {
+    "@prisma/client": "6.19.1",
+    "dotenv": "^17.2.3"
+  }
 }

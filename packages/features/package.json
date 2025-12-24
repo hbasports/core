@@ -5,6 +5,7 @@
     "private": true,
     "main": "index.ts",
     "dependencies": {
-        "@hbasports/prisma": "workspace:*"
+        "@hbasports/prisma": "workspace:*",
+        "@hbasports/lib": "workspace:*"
     }
 }

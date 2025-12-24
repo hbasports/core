@@ -22,6 +22,7 @@
   "dependencies": {
     "pnpm": "^8.15.9",
     "prisma": "6.19.1",
-    "styled-jsx": "^5.1.7"
+    "styled-jsx": "^5.1.7",
+    "vitest": "^4.0.16"
   }
 }
