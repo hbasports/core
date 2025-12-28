@@ -14,7 +14,7 @@ const countryMap: Record<SupportedCountries, Country> = {
     },
     england: {
         country: "England",
-        countryCode: "EN",
+        countryCode: "GB",
         nationality: "English"
     },
     sri_lanka: {

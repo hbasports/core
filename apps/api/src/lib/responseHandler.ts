@@ -7,14 +7,12 @@ interface ResponseData {
 export function sendResponse(
     res: Response,
     statusCode: number,
-    success?: boolean,
     data: ResponseData | null = {},
     message?: string
 ): Response {
     const response = {
         statusCode,
         timestamp: new Date().toISOString(),
-        success,
         data: data === null ? {} : data,
         message,
     }

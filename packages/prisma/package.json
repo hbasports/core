@@ -2,7 +2,8 @@
   "name": "@hbasports/prisma",
   "exports": {
     "./client": "./client.ts",
-    "./*": "./generated/prisma/*"
+    "./*": "./generated/prisma/*",
+    "./zod-utils": "./zod-utils.ts"
   },
   "devDependencies": {
     "@hbasports/tsconfig": "workspace:*",
@@ -11,6 +12,7 @@
   },
   "dependencies": {
     "@prisma/client": "6.19.1",
-    "dotenv": "^17.2.3"
+    "dotenv": "^17.2.3",
+    "zod": "^4.2.1"
   }
 }

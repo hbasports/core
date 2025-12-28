@@ -36,7 +36,6 @@ type Country {
   countryCode String
   country     String
   nationality String?
-  display     String?
 }
 
 type Location {
@@ -119,11 +118,44 @@ type BirthDetails {
   gender   Gender
 }
 
+enum USER_RANK {
+  ADMIN
+  MODERATOR
+  SCORER
+  WRITER
+  USER
+}
+
+model User {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  userId    String    @unique() @default(uuid())
+  username  String?
+  slug      String?   @unique()
+  email     String    @unique()
+  password  String
+  bio       String?
+  rank      USER_RANK @default(USER)
+  avatarUrl String?
+
+  // Preferences (MAY BE IMPLEMENTED LATER)
+  locale     String @default("en-GB")
+  timeZone   String @default("Sydney/Australia")
+  timeFormat Int    @default(12)
+
+  locked Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Player {
   id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  playerId      String        @unique() @default(uuid())
   fullName      FullName
   birthDetails  BirthDetails
   biometricData BiometricData
+  relations     Json?
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
 }

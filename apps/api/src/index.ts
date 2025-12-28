@@ -10,6 +10,10 @@ import routes from "@/modules/routes.js";
 import errorHandler from "@/middleware/error.js";
 import logRequest from "./middleware/request-ids/request-id.middleware.js";
 
+import cors from "cors"
+
+app.use(cors())
+
 app.use(logRequest());
 app.use(express.json());
 

@@ -10,9 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@hbasports/prisma": "workspace:*",
     "@hbasports/features": "workspace:*",
+    "@hbasports/lib": "workspace:*",
+    "@hbasports/prisma": "workspace:*",
     "@prisma/client": "^6.19.1",
+    "@types/cors": "^2.8.19",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "http-status-codes": "^2.3.0",
