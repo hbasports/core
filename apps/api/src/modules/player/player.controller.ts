@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { PlayerCreationService } from "@hbasports/features/player/services/PlayerService.js";
-import { sendResponse } from "@/lib/responseHandler.js";
+import { PlayerCreationService } from "@hbasports/features/player/services/PlayerCreationService.js";
+import { sendResponse } from  "@/lib/responseHandler.js";
 import { StatusCodes } from "http-status-codes";
 
 export class PlayerController {

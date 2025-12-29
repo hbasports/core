@@ -7,7 +7,6 @@ import type { SubmitHandler } from "react-hook-form";
 import { FormProvider, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { cva } from "class-variance-authority";
 
 import { signupSchema } from "@hbasports/prisma/zod-utils";
 import AuthContainer from "@/components/ui/AuthContainer";
@@ -17,28 +16,26 @@ import Button from "@/components/Button";
 
 type FormValues = z.infer<typeof signupSchema>;
 
-const FormDefaultValues: FormValues = {
-  email: "",
-  password: "",
-  username: "",
-};
-
 export default function Signup() {
   const [displayEmailForm, setDisplayEmailForm] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const router = useRouter();
   const formMethods = useForm<FormValues>({
     resolver: zodResolver(signupSchema),
-    defaultValues: FormDefaultValues,
+    defaultValues: {
+      username: "",
+      email: "",
+      password: "",
+    },
   });
   const {
     register,
     watch,
-    formState: { isSubmitting, errors, isSubmitSuccessful },
+    formState: { isSubmitting, errors },
   } = formMethods;
 
   const signup: SubmitHandler<FormValues> = async (data) => {
-    await fetch(`http://localhost:8626/api/users/create`, {
+    await fetch(`http://localhost:8626/api/auth/signup`, {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +43,6 @@ export default function Signup() {
       method: "POST",
     })
       .then(async () => {
-        console.log(formMethods.formState.errors);
         // Construct redirect urls and generate token credentials
       })
       .catch((err) => {
@@ -102,7 +98,7 @@ export default function Signup() {
               color="primary"
               size="base"
               className="w-full justify-center"
-              disabled={formMethods.formState.isSubmitting}
+              disabled={isSubmitting}
               type="submit"
             >
               Get started

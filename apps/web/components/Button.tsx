@@ -2,7 +2,7 @@ import { cva } from "class-variance-authority";
 import classNames from "classnames";
 
 const buttonStyles = cva(
-  "rounded-[10px] whitespace-nowrap inline-flex items-center text-sm font-medium transition cursor-pointer relative",
+  "rounded-[10px] whitespace-nowrap inline-flex items-center text-sm font-semibold transition cursor-pointer relative",
   {
     variants: {
       color: {

@@ -1,18 +1,17 @@
-import "./env.js"
+import "./env.js";
 
 import express from "express";
-const app = express();
+import cors from "cors";
 
 import { config } from "@/config/app.js";
 import logger from "@/config/logger.js";
-
 import routes from "@/modules/routes.js";
 import errorHandler from "@/middleware/error.js";
 import logRequest from "./middleware/request-ids/request-id.middleware.js";
 
-import cors from "cors"
+const app = express();
 
-app.use(cors())
+app.use(cors());
 
 app.use(logRequest());
 app.use(express.json());

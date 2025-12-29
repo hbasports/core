@@ -1,13 +1,13 @@
 {
-    "name": "@hbasports/features",
-    "description": "HBA SPORTS' collection of features",
-    "authors": "HBA SPORTS",
-    "private": true,
-    "main": "index.ts",
-    "dependencies": {
-        "@hbasports/lib": "workspace:*",
-        "@hbasports/prisma": "workspace:*",
-        "bcrypt": "^6.0.0",
-        "zod": "^4.2.1"
-    }
+  "name": "@hbasports/features",
+  "description": "HBA SPORTS' collection of features",
+  "authors": "HBA SPORTS",
+  "private": true,
+  "main": "index.ts",
+  "dependencies": {
+    "@hbasports/lib": "workspace:*",
+    "@hbasports/prisma": "workspace:*",
+    "bcrypt": "^6.0.0",
+    "zod": "^4.2.1"
+  }
 }
