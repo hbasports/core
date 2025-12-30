@@ -11,5 +11,9 @@ export class AuthController {
   @HttpCode(HttpStatus.CREATED)
   signup(@Body(new ZodValidationPipe(signupSchema)) user) {
     this.authService.createUser(user);
+
+    return {
+      success: true
+    }
   }
 }
