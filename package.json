@@ -7,10 +7,12 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --log-order=stream",
-    "env-check": ""
+    "env-check": "dotenv-checker",
+    "lint": "turbo lint"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.5",
+    "dotenv-checker": "^1.1.7",
     "jest": "^30.2.0",
     "prettier": "^3.7.4",
     "turbo": "^2.7.2",

@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "tsx --watch src/index.ts"
   },
-  "author": "",
+  "author": "HBA SPORTS",
   "license": "ISC",
   "dependencies": {
     "@hbasports/features": "workspace:*",

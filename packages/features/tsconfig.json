@@ -4,9 +4,7 @@
         "moduleResolution": "bundler",
         "baseUrl": ".",
         "paths": {
-            "~/*": [
-                "/*"
-            ]
+            "~/*": ["/*"]
         },
         "lib": ["ES2015"],
         "resolveJsonModule": true,

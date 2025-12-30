@@ -11,8 +11,6 @@
     "**/.yarn": true,
     "**/.pnp.*": true
   },
-  "terminal.integrated.defaultProfile.windows": "Zsh (MSYS2)",
-  "prettier.prettierPath": ".yarn/sdks/prettier/index.cjs",
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true
 }
