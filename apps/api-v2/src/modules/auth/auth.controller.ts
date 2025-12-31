@@ -1,19 +1,28 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  HttpStatus,
+  Post,
+  ValidationPipe,
+  Logger,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { ZodValidationPipe } from 'src/lib/pipes/zod-validation-pipe';
-import { signupSchema } from '@hbasports/prisma/zod-utils';
+
+import { CreateUserDTO } from './dtos/auth.dto';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
+  private readonly logger = new Logger();
 
   @Post('signup')
   @HttpCode(HttpStatus.CREATED)
-  signup(@Body(new ZodValidationPipe(signupSchema)) user) {
-    this.authService.createUser(user);
+  signup(@Body() user: CreateUserDTO) {
+    this.authService.createAccount(user);
 
     return {
-      success: true
-    }
+      success: true,
+    };
   }
 }
