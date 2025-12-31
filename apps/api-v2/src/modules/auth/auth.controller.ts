@@ -6,6 +6,7 @@ import {
   Post,
   ValidationPipe,
   Logger,
+  InternalServerErrorException,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
@@ -18,11 +19,16 @@ export class AuthController {
 
   @Post('signup')
   @HttpCode(HttpStatus.CREATED)
-  signup(@Body() user: CreateUserDTO) {
-    this.authService.createAccount(user);
-
-    return {
-      success: true,
-    };
+  async signup(@Body() user: CreateUserDTO) {
+    try {
+      await this.authService.createAccount(user);
+      return {
+        success: true,
+      };
+    } catch (err) {
+      throw new InternalServerErrorException(
+        'Something went wrong! Please try again later.',
+      );
+    }
   }
 }

@@ -1,9 +1,10 @@
 import { Transform } from 'class-transformer';
 import { IsEmail, IsString, Length } from 'class-validator';
+import { removeSpecialCharacters } from 'src/lib/string';
 
 export class CreateUserDTO {
   @IsString({ message: 'Username must be a string.' })
-  @Transform(({ value }) => value.trim())
+  @Transform(({ value }) => removeSpecialCharacters(value))
   @Length(3, 30, { message: 'Username must be between 3 and 30 characters.' })
   public readonly username: string;
 

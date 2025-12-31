@@ -6,15 +6,15 @@ import { winstonLogger } from './config/logger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    logger: winstonLogger
+    logger: winstonLogger,
   });
 
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
-      transform: true
-    })
-  )
+      transform: true,
+    }),
+  );
 
   await app.listen(process.env.PORT ?? 3001);
 }
