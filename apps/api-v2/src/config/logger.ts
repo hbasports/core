@@ -1,5 +1,5 @@
 import { WinstonModule } from 'nest-winston';
-import winston from 'winston';
+import * as winston from 'winston';
 const { combine, timestamp, printf, colorize, align } = winston.format;
 
 export const winstonLogger = WinstonModule.createLogger({

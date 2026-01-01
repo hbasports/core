@@ -29,7 +29,7 @@ importers:
         version: 1.1.7
       jest:
         specifier: ^30.2.0
-        version: 30.2.0
+        version: 30.2.0(@types/node@25.0.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.2))
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
@@ -102,13 +102,13 @@ importers:
         version: 6.0.3
       jest:
         specifier: ^30.2.0
-        version: 30.2.0(@types/node@25.0.3)
+        version: 30.2.0(@types/node@25.0.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.3))
       supertest:
         specifier: ^7.1.4
         version: 7.1.4
       ts-jest:
         specifier: ^29.4.6
-        version: 29.4.6(@babel/core@7.28.5)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.28.5))(jest-util@30.2.0)(jest@30.2.0(@types/node@25.0.3))(typescript@5.9.3)
+        version: 29.4.6(@babel/core@7.28.5)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.28.5))(jest-util@30.2.0)(jest@30.2.0(@types/node@25.0.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.3)))(typescript@5.9.3)
       tsx:
         specifier: ^4.21.0
         version: 4.21.0
@@ -118,6 +118,12 @@ importers:
 
   apps/api-v2:
     dependencies:
+      '@hbasports/prisma':
+        specifier: workspace:*
+        version: link:../../packages/prisma
+      '@hbasports/tsconfig':
+        specifier: workspace:*
+        version: link:../../packages/tsconfig
       '@nestjs/common':
         specifier: ^11.0.1
         version: 11.1.10(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.1)
@@ -170,6 +176,9 @@ importers:
       '@nestjs/testing':
         specifier: ^11.0.1
         version: 11.1.10(@nestjs/common@11.1.10(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@11.1.10)(@nestjs/platform-express@11.1.10)
+      '@types/bcrypt':
+        specifier: ^6.0.0
+        version: 6.0.0
       '@types/express':
         specifier: ^5.0.0
         version: 5.0.6
@@ -236,12 +245,12 @@ importers:
 
   apps/web:
     dependencies:
+      '@hbasports/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.69.0(react@19.2.3))
-      '@repo/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
       '@tailwindcss/postcss':
         specifier: ^4.1.18
         version: 4.1.18
@@ -270,12 +279,12 @@ importers:
         specifier: ^4.2.1
         version: 4.2.1
     devDependencies:
+      '@hbasports/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
       '@hbasports/tsconfig':
         specifier: workspace:*
         version: link:../../packages/tsconfig
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../../packages/eslint-config
       '@types/node':
         specifier: ^22.15.3
         version: 22.19.3
@@ -351,6 +360,18 @@ importers:
 
   packages/lib: {}
 
+  packages/prisma:
+    dependencies:
+      '@prisma/client':
+        specifier: 6.19.1
+        version: 6.19.1(prisma@6.19.1(typescript@5.9.3))(typescript@5.9.3)
+      prisma:
+        specifier: 6.19.1
+        version: 6.19.1(typescript@5.9.3)
+      prisma-zod-generator:
+        specifier: 1.32.1
+        version: 1.32.1(prisma@6.19.1(typescript@5.9.3))(typescript@5.9.3)(zod@4.2.1)
+
   packages/tsconfig: {}
 
   packages/ui:
@@ -368,12 +389,12 @@ importers:
         specifier: ^7.69.0
         version: 7.69.0(react@19.2.3)
     devDependencies:
+      '@hbasports/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
       '@hbasports/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
       '@types/node':
         specifier: ^22.15.3
         version: 22.19.3
@@ -1438,8 +1459,14 @@ packages:
   '@prisma/debug@7.2.0':
     resolution: {integrity: sha512-YSGTiSlBAVJPzX4ONZmMotL+ozJwQjRmZweQNIq/ER0tQJKJynNkRB3kyvt37eOfsbMCXk3gnLF6J9OJ4QWftw==}
 
+  '@prisma/dmmf@6.19.1':
+    resolution: {integrity: sha512-QY6z6GBt1ySavs2I6VxXJFhPV2wabkookKjLsK/GFygZ0tmDmki0iutS8Mv0fQs3O8vk1t+1x3rZjJHqy/6OSw==}
+
   '@prisma/dmmf@7.2.0':
     resolution: {integrity: sha512-w+hAFGH34+Ed+y7AhK3FL6ExwPu5Ym2uyadqlTEn8yyXereHRD8qO9tQfgTIJuUqF0G2JZXBVrNuqvRVVvSZdg==}
+
+  '@prisma/driver-adapter-utils@6.19.1':
+    resolution: {integrity: sha512-W6Ds1lOZ2H6VGikchhOYs9dfKgPymfS/FJjtgYRqNTxJyHRyHsfTzGG+MOAupeLhZFHPWPA8eX12gNbgAGT8/g==}
 
   '@prisma/driver-adapter-utils@7.2.0':
     resolution: {integrity: sha512-gzrUcbI9VmHS24Uf+0+7DNzdIw7keglJsD5m/MHxQOU68OhGVzlphQRobLiDMn8CHNA2XN8uugwKjudVtnfMVQ==}
@@ -1462,8 +1489,14 @@ packages:
   '@prisma/fetch-engine@7.2.0':
     resolution: {integrity: sha512-Z5XZztJ8Ap+wovpjPD2lQKnB8nWFGNouCrglaNFjxIWAGWz0oeHXwUJRiclIoSSXN/ptcs9/behptSk8d0Yy6w==}
 
+  '@prisma/generator-helper@6.19.1':
+    resolution: {integrity: sha512-/q5JlaWIthJ5wpx7Y7e9pstAeUpGt7vXMKK/yQhZ000fOKnLySNqlt/5bHXT4TO4P2Apjwb/bM0GwTGMV6D+eA==}
+
   '@prisma/generator-helper@7.2.0':
     resolution: {integrity: sha512-PTz/2mrLlj6ITgvEeubEe+CoSt5GsyFI+3xqnBS27h2r4fYFA6i1TLKjIq8m82GZERN9J/Awwdjw90hdAQSOHg==}
+
+  '@prisma/generator@6.19.1':
+    resolution: {integrity: sha512-q/JOCDQg8S0l5dM9HXWszTKHVZzwvYB/8aFNln2FDcTGB2YeO9Q7nKTMnYfezip6RE/lCcxz5rZ+YXWr62XUwQ==}
 
   '@prisma/generator@7.2.0':
     resolution: {integrity: sha512-EucIFLF/aGmXB2qrjPhjGnL2E0urFuYg1o1+DzFLecoJzZtpRD+nJQt9ZbxKSU6a7PjX3KROOzAEPb3ItaAATA==}
@@ -1474,6 +1507,14 @@ packages:
   '@prisma/get-platform@7.2.0':
     resolution: {integrity: sha512-k1V0l0Td1732EHpAfi2eySTezyllok9dXb6UQanajkJQzPUGi3vO2z7jdkz67SypFTdmbnyGYxvEvYZdZsMAVA==}
 
+  '@prisma/internals@6.19.1':
+    resolution: {integrity: sha512-1LOE3bdEBOIqBrmJp4bcahhIzfYOfiRZiSmzd3TcOWBvbHcmkb4fMRYeN1ptrSvT0HK3sadLJr8k+sv67fQ9jg==}
+    peerDependencies:
+      typescript: '>=5.1.0'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   '@prisma/internals@7.2.0':
     resolution: {integrity: sha512-AD6ziauXgqacFVqKsFi7C+xiZ2/jsrAB0o6m3BdIaj9zQLFkMYETHmRKN7js3+D4RXAVkyIk/AVBUGDvPHWRfw==}
     peerDependencies:
@@ -1482,11 +1523,20 @@ packages:
       typescript:
         optional: true
 
+  '@prisma/prisma-schema-wasm@7.1.1-3.c2990dca591cba766e3b7ef5d9e8a84796e47ab7':
+    resolution: {integrity: sha512-/5JrsJQAOIWSl+9WMM/0ugd737kT9zdMNr7EFaP7ogeMxAhxQ78uaOV6JYGEocD8LC0gZx7MXmVE/CTfYdJ2iA==}
+
   '@prisma/prisma-schema-wasm@7.2.0-4.0c8ef2ce45c83248ab3df073180d5eda9e8be7a3':
     resolution: {integrity: sha512-rniY+d+pqkH1vmnM+rGH3nxf0Z50uC27Yqo9eUsWkkosJ/jyUSFa/lTiPl4CyCOlk6AtJ6ycxjzQnJcMLYaptA==}
 
+  '@prisma/schema-engine-wasm@7.1.1-3.c2990dca591cba766e3b7ef5d9e8a84796e47ab7':
+    resolution: {integrity: sha512-mXtzeePkSdqpr/HAIclqzQEf+tBzLawy7NQ9AaRCfg8N/cruavpsocgbSwOOfV7JTk9JubyzKuR3tp2bNNuWbQ==}
+
   '@prisma/schema-engine-wasm@7.2.0-4.0c8ef2ce45c83248ab3df073180d5eda9e8be7a3':
     resolution: {integrity: sha512-Kdyw3LJXp1lbXow1de9WJEFwZdG0Apll4RV1uanatNZlz3cOfl9wuQzD8rh9T+pg6wGT201l+klpJV9sox/S3Q==}
+
+  '@prisma/schema-files-loader@6.19.1':
+    resolution: {integrity: sha512-h9P2U+b1qmp9eM946l/U22LzWCCtGxaxv5X7yz7uHuqoNXRwuqF+ASgTZ6ee1BLAtWk7zCX38RcrPZNNq+8vEA==}
 
   '@prisma/schema-files-loader@7.2.0':
     resolution: {integrity: sha512-3OQ913USxffx3N9tJalZV/WPzvfhunn8/P7aUplbdV7bPZWSevMQANWDbaYOsZ9uHvWvgvC4lOXUrHdfweJhWw==}
@@ -1636,6 +1686,9 @@ packages:
 
   '@types/babel__traverse@7.28.0':
     resolution: {integrity: sha512-8PvcXf70gTDZBgt9ptxJ8elBeBjcLOAcOtoO/mPJjtji1+CdGbHgm77om1GrsPxsiE+uXIpNSK64UYaIwQXd4Q==}
+
+  '@types/bcrypt@6.0.0':
+    resolution: {integrity: sha512-/oJGukuH3D2+D+3H4JWLaAsJ/ji86dhRidzZ/Od7H/i8g+aCmvkeCc6Ni/f9uxGLSQVCRZkX2/lqEFG2BvWtlQ==}
 
   '@types/body-parser@1.19.6':
     resolution: {integrity: sha512-HLFeCYgz89uk22N5Qg3dvGvsv46B8GLvKKo1zKG4NybA8U2DiEO3w9lqGg29t/tfLRJpJ6iQxnVw4OnB7MoM9g==}
@@ -3988,6 +4041,13 @@ packages:
     resolution: {integrity: sha512-9uBdv/B4EefsuAL+pWqueZyZS2Ba+LxfFeQ9DN14HU4bN8bhaxKdkpjpB6fs9+pSjIBu+FXQHImEg8j/Lw0+vA==}
     engines: {node: ^18.14.0 || ^20.0.0 || ^22.0.0 || >=24.0.0}
 
+  prisma-zod-generator@1.32.1:
+    resolution: {integrity: sha512-3LrvaQoIs+HQ6/IMaNpUctaVa/BjMJK+rGfLh5Qn8NI9te2Ig1sxBOmBQM9Q73qExPTDyGUZhBWpP30IB5HEIw==}
+    engines: {node: '>=18.18.0'}
+    hasBin: true
+    peerDependencies:
+      zod: '>=3.25.0 <5'
+
   prisma-zod-generator@1.32.2:
     resolution: {integrity: sha512-LtL3Z5VbYpP9hlpqeVNMVuIftMyT44YRTpPPjXiafs4Ow3wbog5We3Aa4xFRCjdzGvC0Y6fyAqGGt4fv+FAo1g==}
     engines: {node: '>=20.19.0'}
@@ -5523,7 +5583,7 @@ snapshots:
       jest-util: 30.2.0
       slash: 3.0.0
 
-  '@jest/core@30.2.0':
+  '@jest/core@30.2.0(ts-node@10.9.2(@types/node@22.19.3)(typescript@5.9.3))':
     dependencies:
       '@jest/console': 30.2.0
       '@jest/pattern': 30.0.1
@@ -5538,7 +5598,7 @@ snapshots:
       exit-x: 0.2.2
       graceful-fs: 4.2.11
       jest-changed-files: 30.2.0
-      jest-config: 30.2.0(@types/node@22.19.3)
+      jest-config: 30.2.0(@types/node@22.19.3)(ts-node@10.9.2(@types/node@22.19.3)(typescript@5.9.3))
       jest-haste-map: 30.2.0
       jest-message-util: 30.2.0
       jest-regex-util: 30.0.1
@@ -5559,7 +5619,7 @@ snapshots:
       - supports-color
       - ts-node
 
-  '@jest/core@30.2.0(ts-node@10.9.2(@types/node@22.19.3)(typescript@5.9.3))':
+  '@jest/core@30.2.0(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.2))':
     dependencies:
       '@jest/console': 30.2.0
       '@jest/pattern': 30.0.1
@@ -5574,7 +5634,43 @@ snapshots:
       exit-x: 0.2.2
       graceful-fs: 4.2.11
       jest-changed-files: 30.2.0
-      jest-config: 30.2.0(@types/node@22.19.3)(ts-node@10.9.2(@types/node@22.19.3)(typescript@5.9.3))
+      jest-config: 30.2.0(@types/node@22.19.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.2))
+      jest-haste-map: 30.2.0
+      jest-message-util: 30.2.0
+      jest-regex-util: 30.0.1
+      jest-resolve: 30.2.0
+      jest-resolve-dependencies: 30.2.0
+      jest-runner: 30.2.0
+      jest-runtime: 30.2.0
+      jest-snapshot: 30.2.0
+      jest-util: 30.2.0
+      jest-validate: 30.2.0
+      jest-watcher: 30.2.0
+      micromatch: 4.0.8
+      pretty-format: 30.2.0
+      slash: 3.0.0
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - esbuild-register
+      - supports-color
+      - ts-node
+
+  '@jest/core@30.2.0(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.3))':
+    dependencies:
+      '@jest/console': 30.2.0
+      '@jest/pattern': 30.0.1
+      '@jest/reporters': 30.2.0
+      '@jest/test-result': 30.2.0
+      '@jest/transform': 30.2.0
+      '@jest/types': 30.2.0
+      '@types/node': 22.19.3
+      ansi-escapes: 4.3.2
+      chalk: 4.1.2
+      ci-info: 4.3.1
+      exit-x: 0.2.2
+      graceful-fs: 4.2.11
+      jest-changed-files: 30.2.0
+      jest-config: 30.2.0(@types/node@22.19.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.3))
       jest-haste-map: 30.2.0
       jest-message-util: 30.2.0
       jest-regex-util: 30.0.1
@@ -5946,7 +6042,13 @@ snapshots:
 
   '@prisma/debug@7.2.0': {}
 
+  '@prisma/dmmf@6.19.1': {}
+
   '@prisma/dmmf@7.2.0': {}
+
+  '@prisma/driver-adapter-utils@6.19.1':
+    dependencies:
+      '@prisma/debug': 6.19.1
 
   '@prisma/driver-adapter-utils@7.2.0':
     dependencies:
@@ -5982,11 +6084,19 @@ snapshots:
       '@prisma/engines-version': 7.2.0-4.0c8ef2ce45c83248ab3df073180d5eda9e8be7a3
       '@prisma/get-platform': 7.2.0
 
+  '@prisma/generator-helper@6.19.1':
+    dependencies:
+      '@prisma/debug': 6.19.1
+      '@prisma/dmmf': 6.19.1
+      '@prisma/generator': 6.19.1
+
   '@prisma/generator-helper@7.2.0':
     dependencies:
       '@prisma/debug': 7.2.0
       '@prisma/dmmf': 7.2.0
       '@prisma/generator': 7.2.0
+
+  '@prisma/generator@6.19.1': {}
 
   '@prisma/generator@7.2.0': {}
 
@@ -5997,6 +6107,27 @@ snapshots:
   '@prisma/get-platform@7.2.0':
     dependencies:
       '@prisma/debug': 7.2.0
+
+  '@prisma/internals@6.19.1(typescript@5.9.3)':
+    dependencies:
+      '@prisma/config': 6.19.1
+      '@prisma/debug': 6.19.1
+      '@prisma/dmmf': 6.19.1
+      '@prisma/driver-adapter-utils': 6.19.1
+      '@prisma/engines': 6.19.1
+      '@prisma/fetch-engine': 6.19.1
+      '@prisma/generator': 6.19.1
+      '@prisma/generator-helper': 6.19.1
+      '@prisma/get-platform': 6.19.1
+      '@prisma/prisma-schema-wasm': 7.1.1-3.c2990dca591cba766e3b7ef5d9e8a84796e47ab7
+      '@prisma/schema-engine-wasm': 7.1.1-3.c2990dca591cba766e3b7ef5d9e8a84796e47ab7
+      '@prisma/schema-files-loader': 6.19.1
+      arg: 5.0.2
+      prompts: 2.4.2
+    optionalDependencies:
+      typescript: 5.9.3
+    transitivePeerDependencies:
+      - magicast
 
   '@prisma/internals@7.2.0(typescript@5.9.3)':
     dependencies:
@@ -6019,9 +6150,18 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
+  '@prisma/prisma-schema-wasm@7.1.1-3.c2990dca591cba766e3b7ef5d9e8a84796e47ab7': {}
+
   '@prisma/prisma-schema-wasm@7.2.0-4.0c8ef2ce45c83248ab3df073180d5eda9e8be7a3': {}
 
+  '@prisma/schema-engine-wasm@7.1.1-3.c2990dca591cba766e3b7ef5d9e8a84796e47ab7': {}
+
   '@prisma/schema-engine-wasm@7.2.0-4.0c8ef2ce45c83248ab3df073180d5eda9e8be7a3': {}
+
+  '@prisma/schema-files-loader@6.19.1':
+    dependencies:
+      '@prisma/prisma-schema-wasm': 7.1.1-3.c2990dca591cba766e3b7ef5d9e8a84796e47ab7
+      fs-extra: 11.3.0
 
   '@prisma/schema-files-loader@7.2.0':
     dependencies:
@@ -6164,6 +6304,10 @@ snapshots:
   '@types/babel__traverse@7.28.0':
     dependencies:
       '@babel/types': 7.28.5
+
+  '@types/bcrypt@6.0.0':
+    dependencies:
+      '@types/node': 22.19.3
 
   '@types/body-parser@1.19.6':
     dependencies:
@@ -8060,25 +8204,6 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
-  jest-cli@30.2.0:
-    dependencies:
-      '@jest/core': 30.2.0
-      '@jest/test-result': 30.2.0
-      '@jest/types': 30.2.0
-      chalk: 4.1.2
-      exit-x: 0.2.2
-      import-local: 3.2.0
-      jest-config: 30.2.0
-      jest-util: 30.2.0
-      jest-validate: 30.2.0
-      yargs: 17.7.2
-    transitivePeerDependencies:
-      - '@types/node'
-      - babel-plugin-macros
-      - esbuild-register
-      - supports-color
-      - ts-node
-
   jest-cli@30.2.0(@types/node@22.19.3)(ts-node@10.9.2(@types/node@22.19.3)(typescript@5.9.3)):
     dependencies:
       '@jest/core': 30.2.0(ts-node@10.9.2(@types/node@22.19.3)(typescript@5.9.3))
@@ -8098,15 +8223,15 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest-cli@30.2.0(@types/node@25.0.3):
+  jest-cli@30.2.0(@types/node@25.0.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.2)):
     dependencies:
-      '@jest/core': 30.2.0
+      '@jest/core': 30.2.0(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.2))
       '@jest/test-result': 30.2.0
       '@jest/types': 30.2.0
       chalk: 4.1.2
       exit-x: 0.2.2
       import-local: 3.2.0
-      jest-config: 30.2.0(@types/node@25.0.3)
+      jest-config: 30.2.0(@types/node@25.0.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.2))
       jest-util: 30.2.0
       jest-validate: 30.2.0
       yargs: 17.7.2
@@ -8117,67 +8242,24 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest-config@30.2.0:
+  jest-cli@30.2.0(@types/node@25.0.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.3)):
     dependencies:
-      '@babel/core': 7.28.5
-      '@jest/get-type': 30.1.0
-      '@jest/pattern': 30.0.1
-      '@jest/test-sequencer': 30.2.0
+      '@jest/core': 30.2.0(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.3))
+      '@jest/test-result': 30.2.0
       '@jest/types': 30.2.0
-      babel-jest: 30.2.0(@babel/core@7.28.5)
       chalk: 4.1.2
-      ci-info: 4.3.1
-      deepmerge: 4.3.1
-      glob: 10.5.0
-      graceful-fs: 4.2.11
-      jest-circus: 30.2.0
-      jest-docblock: 30.2.0
-      jest-environment-node: 30.2.0
-      jest-regex-util: 30.0.1
-      jest-resolve: 30.2.0
-      jest-runner: 30.2.0
+      exit-x: 0.2.2
+      import-local: 3.2.0
+      jest-config: 30.2.0(@types/node@25.0.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.3))
       jest-util: 30.2.0
       jest-validate: 30.2.0
-      micromatch: 4.0.8
-      parse-json: 5.2.0
-      pretty-format: 30.2.0
-      slash: 3.0.0
-      strip-json-comments: 3.1.1
+      yargs: 17.7.2
     transitivePeerDependencies:
+      - '@types/node'
       - babel-plugin-macros
+      - esbuild-register
       - supports-color
-
-  jest-config@30.2.0(@types/node@22.19.3):
-    dependencies:
-      '@babel/core': 7.28.5
-      '@jest/get-type': 30.1.0
-      '@jest/pattern': 30.0.1
-      '@jest/test-sequencer': 30.2.0
-      '@jest/types': 30.2.0
-      babel-jest: 30.2.0(@babel/core@7.28.5)
-      chalk: 4.1.2
-      ci-info: 4.3.1
-      deepmerge: 4.3.1
-      glob: 10.5.0
-      graceful-fs: 4.2.11
-      jest-circus: 30.2.0
-      jest-docblock: 30.2.0
-      jest-environment-node: 30.2.0
-      jest-regex-util: 30.0.1
-      jest-resolve: 30.2.0
-      jest-runner: 30.2.0
-      jest-util: 30.2.0
-      jest-validate: 30.2.0
-      micromatch: 4.0.8
-      parse-json: 5.2.0
-      pretty-format: 30.2.0
-      slash: 3.0.0
-      strip-json-comments: 3.1.1
-    optionalDependencies:
-      '@types/node': 22.19.3
-    transitivePeerDependencies:
-      - babel-plugin-macros
-      - supports-color
+      - ts-node
 
   jest-config@30.2.0(@types/node@22.19.3)(ts-node@10.9.2(@types/node@22.19.3)(typescript@5.9.3)):
     dependencies:
@@ -8212,7 +8294,73 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
-  jest-config@30.2.0(@types/node@25.0.3):
+  jest-config@30.2.0(@types/node@22.19.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.2)):
+    dependencies:
+      '@babel/core': 7.28.5
+      '@jest/get-type': 30.1.0
+      '@jest/pattern': 30.0.1
+      '@jest/test-sequencer': 30.2.0
+      '@jest/types': 30.2.0
+      babel-jest: 30.2.0(@babel/core@7.28.5)
+      chalk: 4.1.2
+      ci-info: 4.3.1
+      deepmerge: 4.3.1
+      glob: 10.5.0
+      graceful-fs: 4.2.11
+      jest-circus: 30.2.0
+      jest-docblock: 30.2.0
+      jest-environment-node: 30.2.0
+      jest-regex-util: 30.0.1
+      jest-resolve: 30.2.0
+      jest-runner: 30.2.0
+      jest-util: 30.2.0
+      jest-validate: 30.2.0
+      micromatch: 4.0.8
+      parse-json: 5.2.0
+      pretty-format: 30.2.0
+      slash: 3.0.0
+      strip-json-comments: 3.1.1
+    optionalDependencies:
+      '@types/node': 22.19.3
+      ts-node: 10.9.2(@types/node@25.0.3)(typescript@5.9.2)
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - supports-color
+
+  jest-config@30.2.0(@types/node@22.19.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.3)):
+    dependencies:
+      '@babel/core': 7.28.5
+      '@jest/get-type': 30.1.0
+      '@jest/pattern': 30.0.1
+      '@jest/test-sequencer': 30.2.0
+      '@jest/types': 30.2.0
+      babel-jest: 30.2.0(@babel/core@7.28.5)
+      chalk: 4.1.2
+      ci-info: 4.3.1
+      deepmerge: 4.3.1
+      glob: 10.5.0
+      graceful-fs: 4.2.11
+      jest-circus: 30.2.0
+      jest-docblock: 30.2.0
+      jest-environment-node: 30.2.0
+      jest-regex-util: 30.0.1
+      jest-resolve: 30.2.0
+      jest-runner: 30.2.0
+      jest-util: 30.2.0
+      jest-validate: 30.2.0
+      micromatch: 4.0.8
+      parse-json: 5.2.0
+      pretty-format: 30.2.0
+      slash: 3.0.0
+      strip-json-comments: 3.1.1
+    optionalDependencies:
+      '@types/node': 22.19.3
+      ts-node: 10.9.2(@types/node@25.0.3)(typescript@5.9.3)
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - supports-color
+
+  jest-config@30.2.0(@types/node@25.0.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.2)):
     dependencies:
       '@babel/core': 7.28.5
       '@jest/get-type': 30.1.0
@@ -8240,6 +8388,40 @@ snapshots:
       strip-json-comments: 3.1.1
     optionalDependencies:
       '@types/node': 25.0.3
+      ts-node: 10.9.2(@types/node@25.0.3)(typescript@5.9.2)
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - supports-color
+
+  jest-config@30.2.0(@types/node@25.0.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.3)):
+    dependencies:
+      '@babel/core': 7.28.5
+      '@jest/get-type': 30.1.0
+      '@jest/pattern': 30.0.1
+      '@jest/test-sequencer': 30.2.0
+      '@jest/types': 30.2.0
+      babel-jest: 30.2.0(@babel/core@7.28.5)
+      chalk: 4.1.2
+      ci-info: 4.3.1
+      deepmerge: 4.3.1
+      glob: 10.5.0
+      graceful-fs: 4.2.11
+      jest-circus: 30.2.0
+      jest-docblock: 30.2.0
+      jest-environment-node: 30.2.0
+      jest-regex-util: 30.0.1
+      jest-resolve: 30.2.0
+      jest-runner: 30.2.0
+      jest-util: 30.2.0
+      jest-validate: 30.2.0
+      micromatch: 4.0.8
+      parse-json: 5.2.0
+      pretty-format: 30.2.0
+      slash: 3.0.0
+      strip-json-comments: 3.1.1
+    optionalDependencies:
+      '@types/node': 25.0.3
+      ts-node: 10.9.2(@types/node@25.0.3)(typescript@5.9.3)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -8465,19 +8647,6 @@ snapshots:
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
-  jest@30.2.0:
-    dependencies:
-      '@jest/core': 30.2.0
-      '@jest/types': 30.2.0
-      import-local: 3.2.0
-      jest-cli: 30.2.0
-    transitivePeerDependencies:
-      - '@types/node'
-      - babel-plugin-macros
-      - esbuild-register
-      - supports-color
-      - ts-node
-
   jest@30.2.0(@types/node@22.19.3)(ts-node@10.9.2(@types/node@22.19.3)(typescript@5.9.3)):
     dependencies:
       '@jest/core': 30.2.0(ts-node@10.9.2(@types/node@22.19.3)(typescript@5.9.3))
@@ -8491,12 +8660,25 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest@30.2.0(@types/node@25.0.3):
+  jest@30.2.0(@types/node@25.0.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.2)):
     dependencies:
-      '@jest/core': 30.2.0
+      '@jest/core': 30.2.0(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.2))
       '@jest/types': 30.2.0
       import-local: 3.2.0
-      jest-cli: 30.2.0(@types/node@25.0.3)
+      jest-cli: 30.2.0(@types/node@25.0.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.2))
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - esbuild-register
+      - supports-color
+      - ts-node
+
+  jest@30.2.0(@types/node@25.0.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.3)):
+    dependencies:
+      '@jest/core': 30.2.0(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.3))
+      '@jest/types': 30.2.0
+      import-local: 3.2.0
+      jest-cli: 30.2.0(@types/node@25.0.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.3))
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -9026,6 +9208,28 @@ snapshots:
       '@jest/schemas': 30.0.5
       ansi-styles: 5.2.0
       react-is: 18.3.1
+
+  prisma-zod-generator@1.32.1(prisma@6.19.1(typescript@5.9.3))(typescript@5.9.3)(zod@4.2.1):
+    dependencies:
+      '@prisma/client': 6.19.1(prisma@6.19.1(typescript@5.9.3))(typescript@5.9.3)
+      '@prisma/generator-helper': 6.19.1
+      '@prisma/internals': 6.19.1(typescript@5.9.3)
+      '@types/cors': 2.8.19
+      '@types/express': 5.0.6
+      ajv: 8.17.1
+      ajv-formats: 3.0.1(ajv@8.17.1)
+      cors: 2.8.5
+      express: 5.2.1
+      js-yaml: 4.1.1
+      node-fetch: 3.3.2
+      prettier: 3.7.4
+      tslib: 2.8.1
+      zod: 4.2.1
+    transitivePeerDependencies:
+      - magicast
+      - prisma
+      - supports-color
+      - typescript
 
   prisma-zod-generator@1.32.2(prisma@6.19.1(typescript@5.9.3))(typescript@5.9.3)(zod@4.2.1):
     dependencies:
@@ -9639,12 +9843,12 @@ snapshots:
       babel-jest: 30.2.0(@babel/core@7.28.5)
       jest-util: 30.2.0
 
-  ts-jest@29.4.6(@babel/core@7.28.5)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.28.5))(jest-util@30.2.0)(jest@30.2.0(@types/node@25.0.3))(typescript@5.9.3):
+  ts-jest@29.4.6(@babel/core@7.28.5)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.28.5))(jest-util@30.2.0)(jest@30.2.0(@types/node@25.0.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.3)))(typescript@5.9.3):
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       handlebars: 4.7.8
-      jest: 30.2.0(@types/node@25.0.3)
+      jest: 30.2.0(@types/node@25.0.3)(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.3))
       json5: 2.2.3
       lodash.memoize: 4.1.2
       make-error: 1.3.6
@@ -9686,6 +9890,44 @@ snapshots:
       typescript: 5.9.3
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
+
+  ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.2):
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.12
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.4
+      '@types/node': 25.0.3
+      acorn: 8.15.0
+      acorn-walk: 8.3.4
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 5.9.2
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+    optional: true
+
+  ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.3):
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.12
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.4
+      '@types/node': 25.0.3
+      acorn: 8.15.0
+      acorn-walk: 8.3.4
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 5.9.3
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+    optional: true
 
   tsconfig-paths-webpack-plugin@4.2.0:
     dependencies:

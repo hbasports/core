@@ -8,7 +8,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-import { signupSchema } from "@hbasports/prisma/zod-utils";
+import { signupSchema } from "../app/zod-utils";
 import AuthContainer from "@/components/ui/AuthContainer";
 import { EmailInput, PasswordField, TextInput } from "@/components/form";
 
@@ -35,7 +35,7 @@ export default function Signup() {
   } = formMethods;
 
   const signup: SubmitHandler<FormValues> = async (data) => {
-    await fetch(`http://localhost:8626/api/auth/signup`, {
+    await fetch(`http://localhost:3001/auth/signup`, {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",

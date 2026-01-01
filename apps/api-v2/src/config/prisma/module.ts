@@ -1,5 +1,5 @@
 import { Global, Module } from '@nestjs/common';
-import { PrismaClient } from '../../../prisma/generated/prisma/client';
+import { PrismaClient } from '@hbasports/prisma/client';
 
 const prismaProvider = {
     provide: PrismaClient,

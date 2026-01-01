@@ -3,11 +3,11 @@ import "./env.js";
 import express from "express";
 import cors from "cors";
 
-import { config } from "@/config/app.js";
-import logger from "@/config/logger.js";
-import routes from "@/modules/routes.js";
-import errorHandler from "@/middleware/error.js";
-import logRequest from "./middleware/request-ids/request-id.middleware.js";
+import { config } from "@/config/app";
+import logger from "@/config/logger";
+import routes from "@/modules/routes";
+import errorHandler from "@/middleware/error";
+import logRequest from "./middleware/request-ids/request-id.middleware";
 
 const app = express();
 
