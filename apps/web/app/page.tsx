@@ -2,6 +2,6 @@ import Image, { type ImageProps } from "next/image";
 
 export default function Home() {
   return (
-    <p>I</p>
+    <h1>Hi</h1>
   );
 }

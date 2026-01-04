@@ -1,26 +1,82 @@
-"use client";
-
-interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    addOnSuffix?: React.ReactNode;
-}
-
+import React, { useCallback, useId, useState } from "react";
 import classNames from "classnames";
 
-interface LabelProps {
-    content: string
+interface LabelProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
 }
 
-export function Label(props: React.PropsWithChildren<LabelProps>) {
-    <label>
-        {props.content}
-    </label>
+const HintsOrErrors = () => {
+
 }
 
-export const InputField = ({addOnSuffix, type = "text", className, ...props}: InputFieldProps) => {
-    return (
-        <input className={classNames(
-            "border border-[var(--color-secondary)] rounded-lg focus:border-[var(--color-emphasis)] shadow-xs py-1 px-4 w-full font-medium",
+const Input = (props: LabelProps) => {
+  const id = useId();
+  const { label, className, ...inputProps } = props;
+
+  return (
+    <div>
+      <div>
+        {label && (
+          <label
+            className="text-sm font-semibold mb-2 block leading-none"
+            htmlFor={id}
+          >
+            {label}
+          </label>
+        )}
+      </div>
+      <div>
+        <input
+          id={id}
+          className={classNames(
+            "w-full border border-[hsl(0,0%,90%)] rounded-lg px-3 py-2 text-default bg-transparent min-w-0 text-sm font-medium h-8",
             className
-        )} {...props} />
-    )
-}
+          )}
+          {...inputProps}
+        />
+      </div>
+    </div>
+  );
+};
+
+export const TextInput = (props: LabelProps) => {
+  return (
+    <Input
+      type="text"
+      autoCapitalize="none"
+      autoCorrect="off"
+      inputMode="text"
+      {...props}
+    />
+  );
+};
+
+export const PasswordField = (props: LabelProps) => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const toggleIsPasswordVisible = useCallback(
+    () => setIsPasswordVisible(!isPasswordVisible),
+    [isPasswordVisible, setIsPasswordVisible]
+  );
+  const textLabel = isPasswordVisible ? "Hide password" : "Show password";
+
+  return (
+    <Input
+      {...props}
+      type={isPasswordVisible ? "text" : "password"}
+      placeholder={props.placeholder || "•••••••••••••"}
+    />
+  );
+};
+
+export const EmailInput = (props: LabelProps) => {
+  return (
+    <Input
+      type="email"
+      autoCapitalize="none"
+      autoComplete="email"
+      autoCorrect="no"
+      inputMode="email"
+      {...props}
+    />
+  );
+};
