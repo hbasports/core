@@ -2,6 +2,9 @@
   "name": "@hbasports/prisma",
   "version": "0.0.0",
   "private": true,
+  "main": "generated/prisma/index.js",
+  "types": "generated/prisma/index.d.ts",
+  "type": "commonjs",
   "files": [
     "zod",
     "zod-utils.ts",

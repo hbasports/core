@@ -6,3 +6,7 @@ export const hashPassword = (
 ): Promise<string> => {
   return bcrypt.hash(password, saltRounds);
 };
+
+export const checkPassword = (password: string, storedPassword: string): Promise<boolean> => {
+  return bcrypt.compare(password, storedPassword)
+};

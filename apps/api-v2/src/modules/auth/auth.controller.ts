@@ -5,10 +5,11 @@ import {
   HttpStatus,
   Post,
   Logger,
+  InternalServerErrorException,
 } from '@nestjs/common';
-import { AuthService } from '@/modules/auth/auth.service';
+import { AuthService } from './auth.service';
 
-import { CreateUserDTO } from '@/modules/auth/dtos/auth.dto';
+import { CreateUserDTO } from './dtos/auth.dto';
 
 @Controller({
   path: '/auth',
@@ -24,7 +25,26 @@ export class AuthController {
     return {
       accountId: accountData.userId,
       accountSlug: accountData.slug,
-      email: accountData.email,
     };
+  }
+
+  @Post('get-token')
+  @HttpCode(HttpStatus.OK)
+  async getToken(
+    @Body()
+    accountData: Pick<CreateUserDTO, 'email' | 'password'> & {
+      accountId: string;
+    },
+  ) {
+    const { token, refreshToken } =
+      await this.authService.getToken(accountData);
+    return { token, refreshToken };
+  }
+
+  @Post('username')
+  @HttpCode(HttpStatus.OK)
+  async checkUsername(@Body() username: Pick<CreateUserDTO, 'username'>) {
+    const result = await this.authService.checkUsername(username)
+    return result
   }
 }

@@ -1,8 +1,12 @@
-import React, { useId, useState } from "react";
+import React, { useCallback, useId, useState } from "react";
 import classNames from "classnames";
 
 interface LabelProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+}
+
+const HintsOrErrors = () => {
+
 }
 
 const Input = (props: LabelProps) => {
@@ -11,7 +15,16 @@ const Input = (props: LabelProps) => {
 
   return (
     <div>
-      <div>{label && <label className="text-sm font-semibold mb-2 block leading-none" htmlFor={id}>{label}</label>}</div>
+      <div>
+        {label && (
+          <label
+            className="text-sm font-semibold mb-2 block leading-none"
+            htmlFor={id}
+          >
+            {label}
+          </label>
+        )}
+      </div>
       <div>
         <input
           id={id}
@@ -24,7 +37,7 @@ const Input = (props: LabelProps) => {
       </div>
     </div>
   );
-};  
+};
 
 export const TextInput = (props: LabelProps) => {
   return (
@@ -40,11 +53,17 @@ export const TextInput = (props: LabelProps) => {
 
 export const PasswordField = (props: LabelProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const toggleIsPasswordVisible = useCallback(
+    () => setIsPasswordVisible(!isPasswordVisible),
+    [isPasswordVisible, setIsPasswordVisible]
+  );
+  const textLabel = isPasswordVisible ? "Hide password" : "Show password";
+
   return (
     <Input
-      type="password"
-      placeholder={props.placeholder || "•••••••••••••"}
       {...props}
+      type={isPasswordVisible ? "text" : "password"}
+      placeholder={props.placeholder || "•••••••••••••"}
     />
   );
 };

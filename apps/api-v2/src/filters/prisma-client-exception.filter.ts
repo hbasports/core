@@ -3,7 +3,7 @@ import { BaseExceptionFilter } from '@nestjs/core';
 import { Response } from 'express';
 
 import { Prisma } from '@hbasports/prisma/client';
-import { ApiErrorResponse, normalizeConflictFields } from '@/lib/error';
+import { ApiErrorResponse, normalizeConflictFields } from '../lib/error';
 
 @Catch(Prisma.PrismaClientKnownRequestError)
 export class PrismaClientExceptionFilter extends BaseExceptionFilter {
@@ -25,7 +25,7 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
 
         const payload: ApiErrorResponse = {
           errorCode: statusCode,
-          message: `A field's value is already in use. Please try again.`,
+          message: `The information you entered is already associated with another account.`,
           issues: conflicts,
           timestamp: new Date(),
         };

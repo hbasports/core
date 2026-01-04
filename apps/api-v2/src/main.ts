@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 
