@@ -6,12 +6,13 @@
   "description": "A suite of sports broadcasting solutions for all.",
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --log-order=stream",
-    "env-check": "dotenv-checker",
+    "dev": "turbo run dev",
+    "env-check": "dotenv-checker -s .env.example --env .env --env apps/api/.env --env apps/web/.env",
     "lint": "turbo lint"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.5",
+    "@types/node": "^25.0.9",
     "dotenv-checker": "^1.1.7",
     "jest": "^30.2.0",
     "prettier": "^3.7.4",
@@ -30,3 +31,4 @@
     "styled-jsx": "^5.1.7"
   }
 }
+

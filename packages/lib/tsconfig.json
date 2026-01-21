@@ -1,0 +1,10 @@
+{
+    "extends": "../tsconfig/base.json",
+    "compilerOptions": {
+        "target": "es6",
+        "jsx": "preserve",
+        "resolveJsonModule": true
+    },
+    "include": ["."],
+    "exclude": ["dist", "build", "node_modules"]
+}

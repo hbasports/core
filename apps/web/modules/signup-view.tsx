@@ -1,22 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { check, z } from "zod";
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { SubmitHandler } from "react-hook-form";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 import { signupSchema } from "../app/zod-utils";
 import AuthContainer from "@/components/ui/AuthContainer";
 import { EmailInput, PasswordField, TextInput } from "@/components/form";
 
-import Button from "@/components/Button";
+import Button from "@/components/button/Button";
 import { useDebounce } from "@/lib/hooks/useDebounce";
-import { getUserCredentials } from "@/lib/getUserCredentials";
 import { Alert } from "@/components/Alert";
 import { fetchUsername } from "@/lib/fetchUsername";
+import { WEBSITE_URL } from "@hbasports/lib/constants";
 
 const apiSignupSchema = signupSchema.extend({
   apiError: z.string().optional(),
@@ -70,7 +70,6 @@ function UsernameField({
 export default function Signup() {
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [usernameTaken, setUsernameTaken] = useState(false);
-  const router = useRouter();
   const formMethods = useForm<FormValues>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
@@ -86,10 +85,6 @@ export default function Signup() {
   } = formMethods;
 
   const signup: SubmitHandler<FormValues> = async (formData) => {
-    const WEBAPP_URL = "http://localhost:3000"; // TODO: move to constants package
-    const GETTING_STARTED_PATH = "getting-started";
-    const redirectUrl = `${WEBAPP_URL}/${GETTING_STARTED_PATH}`;
-
     try {
       const response = await fetch("http://localhost:3001/auth/signup", {
         method: "POST",
@@ -97,19 +92,20 @@ export default function Signup() {
         body: JSON.stringify(formData),
       });
 
-      const signupResponse = await response.json();
+      const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(signupResponse.message || "Signup failed.");
+        throw new Error(data.message || "Signup failed.");
       }
 
-      await getUserCredentials(
-        formData.email as string,
-        formData.password,
-        signupResponse.accountId ?? ""
-      );
+      const callbackUrl = `${WEBSITE_URL}/organizations`
 
-      router.push(redirectUrl);
+      await signIn("credentials", {
+        email: data.email,
+        password: formData.password,
+        redirect: true,
+        callbackUrl: callbackUrl
+      })
     } catch (err: any) {
       console.error("Signup error:", err);
       formMethods.setError("apiError", { message: err.message });
@@ -134,7 +130,7 @@ export default function Signup() {
     <div>
       <AuthContainer heading="Create an account" footerText={LoginFooter}>
         <Button
-          color="secondary"
+          color="primary"
           size="base"
           className="w-full justify-center"
           CustomStartIcon={<GoogleIcon />}
@@ -142,7 +138,7 @@ export default function Signup() {
           Sign up with Google
         </Button>
         <div className="my-8">
-          <div className="relative flex items-center">
+          <div className=" flex items-center">
             <div className="border-[hsl(0,0%,90%)] grow border-t"></div>
             <span className="text-[hsl(0,0%,65%)] mx-2 shrink text-sm font-medium leading-none">
               or
@@ -172,7 +168,6 @@ export default function Signup() {
               placeholder="John Doe"
               usernameTaken={usernameTaken}
               setUsernameTaken={(value) => setUsernameTaken(value)}
-              {...register("username")}
             />
             <PasswordField
               id="password"
@@ -190,7 +185,7 @@ export default function Signup() {
               />
             )}
             <Button
-              color="primary"
+              color="secondary"
               size="base"
               className="w-full justify-center"
               disabled={isSubmitting}

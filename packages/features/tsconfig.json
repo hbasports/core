@@ -1,15 +1,15 @@
 {
-    "compilerOptions": {
-        "module": "esnext",
-        "moduleResolution": "bundler",
-        "baseUrl": ".",
-        "paths": {
-            "~/*": ["/*"]
-        },
-        "lib": ["ES2015"],
-        "resolveJsonModule": true,
-        "esModuleInterop": true
+  "extends": "../tsconfig/react-library.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "baseUrl": ".",
+    "paths": {
+        "~/*": ["/*"]
     },
-    "include": ["."],
-    "exclude": []
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"]
 }

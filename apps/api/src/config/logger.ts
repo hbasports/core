@@ -1,17 +1,16 @@
-import winston from 'winston'
+import { WinstonModule } from 'nest-winston';
+import * as winston from 'winston';
 const { combine, timestamp, printf, colorize, align } = winston.format;
 
-const logger = winston.createLogger({
-    level: 'info',
-    format: combine(
-        colorize({all: true}),
-        timestamp({
-            format: 'DD-MM-YYYY hh:mm:ss.SSS A'
-        }),
-        align(),
-        printf((info) => `[${info.timestamp}] ${info.level}: ${info.message}`)
-    ),
-    transports: [new winston.transports.Console()]
-})
-
-export default logger;
+export const winstonLogger = WinstonModule.createLogger({
+  level: 'info',
+  format: combine(
+    colorize({ all: true }),
+    timestamp({
+      format: 'DD-MM-YYYY hh:mm:ss.SSS A',
+    }),
+    align(),
+    printf((info) => `[${info.timestamp}] ${info.level}: ${info.message}`),
+  ),
+  transports: [new winston.transports.Console()],
+});

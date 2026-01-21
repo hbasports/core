@@ -1,27 +1,23 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "declaration": true,
-    "resolveJsonModule": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
     "target": "es2021",
-    "sourceMap": true,
     "outDir": "./dist",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "baseUrl": ".",
-    "jsx": "react-jsx",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@hbasports/prisma": [
+        "../../packages/prisma"
+      ],
+      "@hbasports/lib/*": ["../../packages/lib/*"],
+      "@hbasports/features/*": ["../../packages/features/*"],
+      "@hbasports/prisma/*": ["../../packages/prisma/*"]
     },
-    "incremental": true,
     "skipLibCheck": true,
-    "strict": true,
-    "noImplicitAny": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": false
+    "allowJs": true,
   },
-  "include": ["**/*.ts"],
-  "exclude": ["dist"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

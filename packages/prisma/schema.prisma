@@ -1,7 +1,8 @@
 generator client {
-  provider        = "prisma-client"
-  output          = "./generated/prisma"
-  engineType = "library"
+  provider     = "prisma-client-js"
+  output       = "./generated/prisma"
+  engineType   = "library"
+  moduleFormat = "cjs"
 }
 
 datasource db {
@@ -127,6 +128,55 @@ enum USER_RANK {
   USER
 }
 
+model Organization {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  organizationId String @unique() @default(uuid())
+
+  name                  String
+  shortName             String?
+  slug                  String    @unique // For URLs
+  sport                 Sports    @default(MULTISPORT)
+  allowPublicMembership Boolean   @default(false)
+  description           String?
+  logoUrl               String?
+  founded               DateTime?
+
+  verified Boolean @default(false)
+
+  ownerId String?
+  owner   User?   @relation(fields: [ownerId], references: [userId])
+
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  organizationMembers OrganizationMember[]
+}
+
+enum OrganizationMembershipStatus {
+  PENDING
+  JOINED
+}
+
+enum JoinRequester {
+  OWNER
+  USER
+}
+
+model OrganizationMember {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [organizationId])
+
+  userId String?
+  user   User?   @relation(fields: [userId], references: [userId])
+
+  status    OrganizationMembershipStatus @default(PENDING)
+  requester JoinRequester
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
@@ -146,8 +196,36 @@ model User {
 
   locked Boolean @default(false)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  organizations       Organization[]
+  organizationMembers OrganizationMember[]
+}
+
+enum Sports {
+  GRIDIRON
+  RUGBY_LEAGUE
+  RUGBY
+  CRICKET
+  AFL
+  SOCCER
+  NBL
+  AUSTRALIAN_RULES
+  GOLF
+  HOCKEY
+  BASEBALL
+  TENNIS
+  NETBALL
+  HORSE_RACING
+  NASCAR
+  MULTISPORT
+}
+
+enum OrganizationStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  ARCHIVED
 }
 
 model Player {

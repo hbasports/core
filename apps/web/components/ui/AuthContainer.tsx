@@ -7,7 +7,7 @@ interface Props {
 export default function AuthContainer(props: React.PropsWithChildren<Props>) {
   return (
     <div className="bg-[hsl(0,0%,95%)] flex flex-col justify-center items-center min-h-screen">
-      <div className="text-center">
+      <div className="text-center text-[22px] font-semibold">
         {props.heading && <h2>{props.heading}</h2>}
       </div>
 

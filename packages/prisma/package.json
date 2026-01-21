@@ -2,17 +2,22 @@
   "name": "@hbasports/prisma",
   "version": "0.0.0",
   "private": true,
-  "main": "generated/prisma/index.js",
-  "types": "generated/prisma/index.d.ts",
-  "type": "commonjs",
+  "scripts": {
+    "generate-schemas": "prisma generate && prisma format",
+    "post-install": "pnpm run generate-schemas"
+  },
+  "main": "index.ts",
+  "types": "index.ts",
   "files": [
     "zod",
     "zod-utils.ts",
+    "generated/prisma",
     "client"
   ],
   "dependencies": {
     "@prisma/client": "6.19.1",
     "prisma": "6.19.1",
-    "prisma-zod-generator": "1.32.1"
+    "prisma-zod-generator": "1.32.1",
+    "zod": "^4.2.1"
   }
 }

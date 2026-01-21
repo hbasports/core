@@ -1,5 +1,14 @@
 {
   "name": "@hbasports/lib",
-  "version": "0.0.0",
-  "private": true
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.17"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3"
+  }
 }

@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+:root {
+  --hba-primary: rgba(3, 169, 244, 1);
+  --hba-secondary: rgba(3, 152, 220, 1);
+
+  --color-bg-primary: hsl(0, 0%, 100%);
+  --color-bg-secondary: hsl(0, 0%, 95%);
+  --color-bg-tertiary: hsl(0, 0%, 90%);
+  --color-border: hsl(0, 0%, 85%);
+
+  --color-text-emphasis: #070a0d;
+  --color-text: hsl(0, 0, 35%);
+  --color-text-secondary: hsl(0, 0, 40%);
+
+  --color-success: #e4fbed;
+  --color-attention: #ffedd6;
+
+  --color-error: #fec8c8;
+  --color-semantic-error: #fec8c8;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+}

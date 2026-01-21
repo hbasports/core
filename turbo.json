@@ -1,6 +1,6 @@
 {
   "$schema": "https://turborepo.com/schema.json",
-  "ui": "tui",
+  "ui": "stream",
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -16,6 +16,15 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "post-install": {
+      "dependsOn": [],
+      "outputs": ["../../node_modules/@prisma/client/**"],
+      "inputs": ["./schema.prisma"]
+    },
+    "@hbasports/prisma#post-install": {
+      "cache": false,
+      "outputs": ["dist/**"]
     }
   }
 }

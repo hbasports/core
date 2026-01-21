@@ -1,12 +1,11 @@
 {
   "name": "@hbasports/features",
-  "description": "HBA SPORTS' collection of features",
-  "authors": "HBA SPORTS",
+  "description": "HBA Sports's main suite of features.",
+  "author": "HBA Sports, Inc.",
+  "version": "1.0.0",
   "private": true,
   "main": "index.ts",
   "dependencies": {
-    "@hbasports/lib": "workspace:*",
-    "bcrypt": "^6.0.0",
-    "zod": "^4.2.1"
+    "@hbasports/prisma": "workspace:*"
   }
 }

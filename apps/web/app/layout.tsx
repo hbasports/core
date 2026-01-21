@@ -1,11 +1,12 @@
-import "./globals.css";
-import Shell from "@/components/Shell";
+import { Shell } from "@/components/Shell";
+import { Montserrat } from "next/font/google";
 
-import {Montserrat} from 'next/font/google'
+import "@/styles/globals.css";
+import Providers from "./providers";
 
 const montserrat = Montserrat({
-  subsets: ['latin']
-})
+  subsets: ["latin"],
+});
 
 export default function RootLayout({
   children,
@@ -13,8 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Shell className={montserrat.className}>
-      {children}
-    </Shell>
+    <html lang="en">
+      <Providers>
+        <body className={montserrat.className}>{children}</body>
+      </Providers>
+    </html>
   );
 }
