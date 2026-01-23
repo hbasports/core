@@ -1,4 +1,4 @@
-import { ProviderId } from "src/types";
+import { ProviderId } from "@/types";
 
 export interface CommonProviderOptions {
   id: string;

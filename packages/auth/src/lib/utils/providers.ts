@@ -1,4 +1,4 @@
-import { AuthenticationOptions, InternalProvider, Provider } from "src/types";
+import { AuthenticationOptions, InternalProvider, Provider } from "../../types";
 
 export function parseProviders(params: {
   url: URL;

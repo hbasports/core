@@ -1,4 +1,4 @@
-import { AuthParams } from "../../lib/request-handler";
+import { AuthParams } from "../request-handler";
 import { AuthAction, ProviderId, RequestInternal } from "../../types";
 
 export async function toInternalRequest(

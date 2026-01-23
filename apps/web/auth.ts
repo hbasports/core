@@ -133,6 +133,9 @@ export const authConfig = {
   session: {
     strategy: "jwt",
   },
+  jwt: {
+
+  },
   pages: {
     error: "/auth/error",
   },

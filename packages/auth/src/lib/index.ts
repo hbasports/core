@@ -1,7 +1,6 @@
 import * as actions from "./actions";
-import { AuthenticationOptions } from "../types";
-import { RequestInternal } from "../types";
 import { init } from "./init";
+import { AuthenticationOptions, RequestInternal } from "../types";
 
 /** @internal */
 export async function MethodHandler(
@@ -15,8 +14,6 @@ export async function MethodHandler(
     providerId: req.provider,
     url: new URL(req.url),
   });
-
-  console.debug(options)
 
   if (method === "GET") {
   } else if (method === "POST") {

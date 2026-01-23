@@ -1,8 +1,8 @@
+import * as jwt from './utils/jwt'
 import {
   AuthenticationOptions,
   InternalOptions,
-  RequestInternal,
-} from "src/types";
+} from "../types";
 import { parseProviders } from "./utils/providers";
 
 interface InitParams {
@@ -15,6 +15,9 @@ interface InitParams {
 export const defaultCallbacks: InternalOptions["callbacks"] = {
   jwt({ token }) {
     return token;
+  },
+  signIn() {
+    return true;
   },
 };
 
@@ -36,6 +39,7 @@ export async function init({
     providers,
     jwt: {
       secret: config.jwt?.secret ?? "",
+      encode: jwt.encode
     },
     url,
     cookies: config.cookies ?? {},

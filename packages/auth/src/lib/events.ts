@@ -1,9 +1,9 @@
 import { headers as nextHeaders, cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-import type { ProviderId } from "../types";
+import type {  } from "@/types";
 import { createActionURL } from "./utils/env";
-import { AuthenticationOptions, SignInOptions } from "src/types";
+import { AuthenticationOptions, SignInOptions, type ProviderId } from "../types";
 
 /**
  * Initiates a signup flow.

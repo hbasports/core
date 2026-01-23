@@ -1,5 +1,5 @@
-import { CommonProviderOptions } from "./providers";
-import { CredentialsConfig } from "./providers/credentials";
+import { CredentialsConfig } from "@/providers/credentials";
+import { JWTEncodeParams } from "./lib/utils/jwt";
 
 export type Awaitable<T> = T | PromiseLike<T>;
 
@@ -93,6 +93,7 @@ interface JWTConfig {
   secret: string;
   expiresIn?: string | number;
   encryption?: boolean;
+  encode: (params: JWTEncodeParams) => Awaitable<string>
 }
 
 export interface SignInOptions<Redirect extends boolean = true> extends Record<
@@ -175,7 +176,7 @@ export interface AuthenticationOptions {
    * @param {string | number} maxAge - Defines the maximum age a JSON Web Token will stay valid. @default 60 * 60 * 24 * 30 // 30 days
    * @param {boolean} encryption - Defines whether a JSON Web Token's payload should be encrypted beforehand.
    */
-  jwt?: JWTConfig;
+  jwt?: Partial<JWTConfig>;
   /**
    * If set to `false`, the default credentials flow with return a `503` error.
    *
@@ -221,7 +222,7 @@ export interface AuthenticationOptions {
      * }
      * ```
      */
-    signIn?: (params: { user: any; account: any }) => Awaited<boolean | string>;
+    signIn?: (params: { user: User; account: Account }) => Awaited<boolean | string>;
     jwt: (params: {
       token: JWT;
       user: User;

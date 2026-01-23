@@ -6,7 +6,8 @@
     "moduleResolution": "bundler",
     "baseUrl": ".",
     "paths": {
-      "~/*": ["/*"]
+      "@/*": ["./src/*"],
+      "@auth": ["./index.ts"]
     },
     "resolveJsonModule": true,
     "esModuleInterop": true

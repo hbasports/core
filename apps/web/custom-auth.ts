@@ -8,8 +8,9 @@ import type {
 import { AuthInit } from "@hbasports/auth";
 import { UserRepository } from "@hbasports/features/users/UserRepository";
 import prisma from "@hbasports/prisma";
-import { ErrorCode } from "./lib/enums/ErrorCode";
 import { verifyPassword } from "@hbasports/lib/auth/verifyPassword";
+
+import { ErrorCode } from "./lib/enums/ErrorCode";
 
 const defaultOptions: JWTOptions = {
   sameSite: "lax",
@@ -46,6 +47,8 @@ async function authorizeCredentials(
     { includePassword: true },
   );
 
+  console.debug(user);
+
   if (!user) {
     console.error("User not found.");
     throw new Error(ErrorCode.IncorrectEmailPassword);
@@ -69,8 +72,6 @@ async function authorizeCredentials(
   if (!isCorrectPassword) {
     throw new Error(ErrorCode.IncorrectPassword);
   }
-
-  console.debug(user || "no-user");
 
   return UserPresenter.fromUser(user);
 }

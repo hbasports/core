@@ -1,9 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
-import { signIn, signOut } from "./lib/events";
-import type { AuthenticationOptions, RequestContext, SignInOptions } from "./types";
-import type { ProviderId } from "./types";
+import type { AuthenticationOptions, RequestContext, SignInOptions, ProviderId } from "./types";
 import { RequestHandler } from "./lib/request-handler";
+import { signIn, signOut } from "./lib/events";
 
 export function AuthInit(config: AuthenticationOptions) {
   const handler = async (

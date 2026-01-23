@@ -1,4 +1,4 @@
-import { AuthAction } from "src/types";
+import { AuthAction } from "../../types";
 
 export function createActionURL(
   action: AuthAction,

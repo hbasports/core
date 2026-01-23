@@ -10,8 +10,8 @@ export async function signIn<Redirect extends boolean = true>(
   provider?: ProviderId,
   options?: SignInOptions<Redirect>,
 ) {
-  const { redirect = true } = options ?? {};
-  const redirectTo = options?.redirectTo ?? window.location.href;
+  const { redirect = true, redirectTo, ...signInData } = options ?? {};
+  const callbackUrl = redirectTo ?? window.location.href;
 
   const baseUrl = WEBSITE_URL;
 
@@ -19,7 +19,7 @@ export async function signIn<Redirect extends boolean = true>(
 
   if (!provider || !ProvidersRecord[provider]) {
     const url = `${baseUrl}/signin?${new URLSearchParams({
-      callbackUrl: options?.redirectTo as string,
+      callbackUrl: callbackUrl as string,
     })}`;
     window.location.href = url;
     return;
@@ -38,7 +38,8 @@ export async function signIn<Redirect extends boolean = true>(
       "X-Auth-Return-Redirect": "1",
     },
     body: JSON.stringify({
-      callbackUrl: redirectTo,
+      ...signInData,
+      callbackUrl,
     }),
   });
 

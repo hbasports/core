@@ -1,5 +1,4 @@
-import { RequestInternal } from "src/types";
-import { CommonProviderOptions } from "./index";
+import { CommonProviderOptions } from "../providers";
 
 export interface CredentialsConfig extends CommonProviderOptions {
   type: "credentials";

@@ -111,11 +111,11 @@ export default function Signup() {
         callbackUrl: callbackUrl,
       });
 
-      // await NextAuthSignIn("credentials", {
-      //   email: data.email ?? "12345abcde@gmail.com",
-      //   password: formData.password,
-      //   redirect: false,
-      // });
+      await NextAuthSignIn("credentials", {
+        email: data.email ?? "12345abcde@gmail.com",
+        password: formData.password,
+        redirect: false,
+      });
     } catch (err: any) {
       formMethods.setError("apiError", { message: err.message });
     }
