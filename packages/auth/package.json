@@ -1,0 +1,12 @@
+{
+  "name": "@hbasports/auth",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "dependencies": {
+    "@hbasports/features": "workspace:*",
+    "@hbasports/lib": "workspace:*",
+    "@hbasports/prisma": "workspace:*",
+    "next": "^16.1.1",
+    "react": "^19.2.3"
+  }
+}

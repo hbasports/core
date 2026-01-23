@@ -20,7 +20,7 @@ import {
   UsernameDTO,
 } from '@/modules/auth/dtos/auth.dto';
 import { minutesToMilliseconds } from '@/lib/time';
-import { User, type AuthenticatedUser } from '@/decorators/user';
+import { User } from '@/decorators/user';
 
 @Controller({
   path: '/auth',
@@ -72,7 +72,7 @@ export class AuthController {
   @Get('me')
   @UseGuards(AuthGuard('jwt'))
   @HttpCode(HttpStatus.OK)
-  async me(@User() user: AuthenticatedUser) {
+  async me(@User() user: unknown) {
     const account = await this.authService.me(user);
 
     const payload = plainToInstance(UserDTO, account);

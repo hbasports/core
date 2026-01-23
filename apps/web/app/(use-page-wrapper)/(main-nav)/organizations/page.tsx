@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 import React from "react";
+import { NextRequest } from "next/server";
 
 import ShellMain from "@/app/(use-page-wrapper)/ShellMain";
 import OrganizationListingView from "@/modules/organizations/OrganizationListingView";
 import { OrganizationsCTA } from "./views/organization-listing-view";
 import { auth } from "@/auth";
-import { NextRequest } from "next/server";
 
 export const metadata: Metadata = {
   title: "Organizations | HBA SPORTS",

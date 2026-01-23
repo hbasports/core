@@ -16,7 +16,6 @@ import {
   CreateOrganizationDTO,
   InviteUserToOrgDTO,
 } from './dtos/organization.dto';
-import { AuthenticatedUser } from '../../decorators/user';
 
 @Injectable()
 export class OrganizationsService {
@@ -25,7 +24,10 @@ export class OrganizationsService {
     private readonly organizationRepository: OrganizationsRepository,
   ) {}
 
-  async create(organization: CreateOrganizationDTO, user: AuthenticatedUser) {
+  async create(
+    organization: CreateOrganizationDTO,
+    user: Partial<{ userId: string }>,
+  ) {
     const ownerId = user.userId;
     const sportToPrismaEnum = organization.sport
       .toUpperCase()
@@ -50,7 +52,10 @@ export class OrganizationsService {
     return newOrganization;
   }
 
-  async inviteUser(payload: InviteUserToOrgDTO, user: AuthenticatedUser) {
+  async inviteUser(
+    payload: InviteUserToOrgDTO,
+    user: Partial<{ userId: string }>,
+  ) {
     const [organization, invitedUser, existingInvite] = await Promise.all([
       this.organizationRepository.findById(payload.organizationId),
       this.organizationRepository.findInvitedUser(payload.accountId),

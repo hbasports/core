@@ -200,6 +200,15 @@ model User {
   updatedAt           DateTime             @updatedAt
   organizations       Organization[]
   organizationMembers OrganizationMember[]
+  sessions            Session[]
+}
+
+model Session {
+  id           String   @id @default(uuid()) @map("_id") @db.ObjectId
+  sessionToken String   @unique
+  userId       String   @db.ObjectId
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id])
 }
 
 enum Sports {

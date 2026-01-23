@@ -6,17 +6,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import type { SubmitHandler } from "react-hook-form";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
+import { signIn as NextAuthSignIn } from "next-auth/react";
+import { signIn } from "@hbasports/auth/src/react";
 
-import { signupSchema } from "../app/zod-utils";
 import AuthContainer from "@/components/ui/AuthContainer";
 import { EmailInput, PasswordField, TextInput } from "@/components/form";
-
 import Button from "@/components/button/Button";
 import { useDebounce } from "@/lib/hooks/useDebounce";
 import { Alert } from "@/components/Alert";
 import { fetchUsername } from "@/lib/fetchUsername";
 import { WEBSITE_URL } from "@hbasports/lib/constants";
+
+import { signupSchema } from "../app/zod-utils";
 
 const apiSignupSchema = signupSchema.extend({
   apiError: z.string().optional(),
@@ -47,7 +48,6 @@ function UsernameField({
         setUsernameTaken(false);
         return;
       }
-      console.log(debouncedUsername);
       await fetchUsername(debouncedUsername).then(({ data }) => {
         setUsernameTaken(!data.available);
       });
@@ -86,28 +86,37 @@ export default function Signup() {
 
   const signup: SubmitHandler<FormValues> = async (formData) => {
     try {
-      const response = await fetch("http://localhost:3001/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      // const response = await fetch("http://localhost:3001/auth/signup", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(formData),
+      // });
 
-      const data = await response.json();
+      // const userData = await response.json();
 
-      if (!response.ok) {
-        throw new Error(data.message || "Signup failed.");
-      }
+      // if (!response.ok) {
+      //   throw new Error(userData.message || "Signup failed.");
+      // }
 
-      const callbackUrl = `${WEBSITE_URL}/organizations`
+      const data = {
+        email: "12345abcde@gmail.com",
+      };
+
+      const callbackUrl = `${WEBSITE_URL}/organizations`;
 
       await signIn("credentials", {
-        email: data.email,
+        email: data.email ?? "12345abcde@gmail.com",
         password: formData.password,
         redirect: true,
-        callbackUrl: callbackUrl
-      })
+        callbackUrl: callbackUrl,
+      });
+
+      // await NextAuthSignIn("credentials", {
+      //   email: data.email ?? "12345abcde@gmail.com",
+      //   password: formData.password,
+      //   redirect: false,
+      // });
     } catch (err: any) {
-      console.error("Signup error:", err);
       formMethods.setError("apiError", { message: err.message });
     }
   };

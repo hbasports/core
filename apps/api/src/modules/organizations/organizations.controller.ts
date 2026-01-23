@@ -19,7 +19,7 @@ import {
   OrganizationDTO,
   UserOrganizationDTO,
 } from './dtos/organization.dto';
-import { AuthenticatedUser, User } from '@/decorators/user';
+import { User } from '@/decorators/user';
 
 @Controller({
   path: '/organizations',
@@ -30,10 +30,7 @@ export class OrganizationsController {
   @Post('create')
   @UseGuards(AuthGuard('jwt'))
   @HttpCode(HttpStatus.CREATED)
-  async create(
-    @Body() organization: CreateOrganizationDTO,
-    @User() user: AuthenticatedUser,
-  ) {
+  async create(@Body() organization: CreateOrganizationDTO, @User() user) {
     const newOrganization = await this.organizationService.create(
       organization,
       user,
@@ -53,10 +50,7 @@ export class OrganizationsController {
   @Post('invite-user')
   @UseGuards(AuthGuard('jwt'))
   @HttpCode(HttpStatus.NO_CONTENT)
-  async inviteUser(
-    @Body() payload: InviteUserToOrgDTO,
-    @User() user: AuthenticatedUser,
-  ) {
+  async inviteUser(@Body() payload: InviteUserToOrgDTO, @User() user) {
     const organizationMembership = await this.organizationService.inviteUser(
       payload,
       user,

@@ -32,7 +32,7 @@ async function bootstrap() {
 
   app.use(cookieParser());
 
-  await app.listen((API_PORT || 3001) as number);
+  await app.listen(API_PORT || 3001);
 }
 
 void bootstrap();

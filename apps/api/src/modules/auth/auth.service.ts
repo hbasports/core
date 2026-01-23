@@ -11,7 +11,7 @@ import {
 } from '@/modules/auth/dtos/auth.dto';
 import { removeSpecialCharacters } from '@/lib/string';
 import { JwtService } from '@/modules/jwt/jwt.service';
-import { User, type AuthenticatedUser } from '@/decorators/user';
+import { User } from '@/decorators/user';
 
 type AccountCredentials = {
   token: string;
@@ -62,7 +62,7 @@ export class AuthService {
    * Everything from this point has been
    * replaced with Auth.js v5 on the frontend
    */
-  async me(@User() user: AuthenticatedUser) {
+  async me(@User() user: Partial<{ userId: string }>) {
     const account = await prisma.user.findFirst({
       where: {
         userId: user.userId,

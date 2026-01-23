@@ -1,8 +1,8 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import type { DefaultSession, User } from "next-auth";
-import type { NextAuthConfig } from "next-auth";
+import type { DefaultSession, NextAuthConfig, Session, User } from "next-auth";
 import type { Provider } from "next-auth/providers";
+import type { JWT } from "next-auth/jwt";
 
 import { prisma } from "@hbasports/prisma";
 import { UserRepository } from "@hbasports/features/users/UserRepository";
@@ -105,19 +105,19 @@ const providers: Provider[] = [CredentialsProvider];
 export const authConfig = {
   providers,
   callbacks: {
-    async redirect({ url, baseUrl }) {
+    async redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
       if (url.startsWith("/")) return `${baseUrl}${url}`;
       else if (new URL(url).hostname === new URL(WEBSITE_URL).hostname)
         return url;
       return baseUrl;
     },
-    async jwt({ token, user }) {
+    async jwt({ token, user }: { token: JWT; user?: User }) {
       if (user) {
         token.sub = user.id;
       }
       return token;
     },
-    async session({ session, token }) {
+    async session({ session, token }: { session: Session; token: JWT }) {
       if (!token.sub || !token.email) return session;
 
       const userRepo = new UserRepository(prisma);
